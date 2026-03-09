@@ -7,6 +7,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
 <style>
 /* ═══════════════════════════════════════════
    ROOT & RESET
@@ -875,7 +879,7 @@ function dbAll(){return new Promise((res,rej)=>{const r=db.transaction(ST,'reado
 function dbDel(id){return new Promise((res,rej)=>{const r=db.transaction(ST,'readwrite').objectStore(ST).delete(id);r.onsuccess=()=>res();r.onerror=()=>rej(r.error);});}
 function dbClr(){return new Promise((res,rej)=>{const r=db.transaction(ST,'readwrite').objectStore(ST).clear();r.onsuccess=()=>res();r.onerror=()=>rej(r.error);});}
 
-/* ══════════════════════════════════
+/* ═════════════════════���════════════
    AI MEME GENERATOR
    Calls /api/generate — FAL_KEY is
    stored in Vercel env, never exposed
