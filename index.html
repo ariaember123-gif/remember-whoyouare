@@ -385,6 +385,10 @@ footer{background:var(--darker);padding:4rem 2rem 3rem;border-top:1px solid rgba
 @keyframes particleFloat{0%{transform:translateY(100vh);opacity:0}10%,90%{opacity:.6}50%{transform:translateY(-10vh) translateX(30px);opacity:1}100%{transform:translateY(-100vh);opacity:0}}
 @keyframes scrollBounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
 </style>
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -875,7 +879,7 @@ function dbAll(){return new Promise((res,rej)=>{const r=db.transaction(ST,'reado
 function dbDel(id){return new Promise((res,rej)=>{const r=db.transaction(ST,'readwrite').objectStore(ST).delete(id);r.onsuccess=()=>res();r.onerror=()=>rej(r.error);});}
 function dbClr(){return new Promise((res,rej)=>{const r=db.transaction(ST,'readwrite').objectStore(ST).clear();r.onsuccess=()=>res();r.onerror=()=>rej(r.error);});}
 
-/* ══════════════════════════════════
+/* ═════════════════════���════════════
    AI MEME GENERATOR
    Calls /api/generate — FAL_KEY is
    stored in Vercel env, never exposed
