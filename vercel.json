@@ -6,6 +6,14 @@
       "dest": "/api/generate.py"
     },
     {
+      "src": "/api/archetype",
+      "dest": "/api/archetype.py"
+    },
+    {
+      "src": "/archetype",
+      "dest": "/archetype.html"
+    },
+    {
       "src": "/",
       "dest": "/index.html"
     }
