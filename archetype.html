@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Crypto Archetype | $REMEMBER</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+    --primary:#7dd3fc;--secondary:#38bdf8;--accent:#0ea5e9;
+    --dark:#0c1821;--darker:#050a0f;
+    --mist:rgba(125,211,252,0.08);--glow:rgba(125,211,252,0.3);
+    --orange:#f97316;--og:rgba(249,115,22,0.35);--om:rgba(249,115,22,0.07);
+    --red:#ef4444;--green:#4ade80;
+    --arch-color:#7dd3fc;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Cormorant Garamond',serif;background:var(--darker);color:#e0f2fe;overflow-x:hidden;line-height:1.7;min-height:100vh;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--darker);}
+::-webkit-scrollbar-thumb{background:rgba(125,211,252,0.25);border-radius:3px;}
+::selection{background:rgba(125,211,252,0.2);color:#fff;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:9999;height:68px;display:flex;align-items:center;
+    justify-content:space-between;padding:0 2.5rem;background:rgba(5,10,15,0.95);
+    backdrop-filter:blur(24px) saturate(1.5);border-bottom:1px solid rgba(125,211,252,0.12);}
+.nav-logo{font-family:'Cinzel',serif;font-size:1.25rem;font-weight:900;letter-spacing:.12em;
+    text-decoration:none;background:linear-gradient(135deg,#bae6fd,var(--primary),var(--secondary));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.nav-links{display:flex;gap:0;list-style:none;align-items:center;}
+.nav-links a{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
+    color:rgba(125,211,252,.55);text-decoration:none;padding:.5rem .85rem;transition:color .3s;}
+.nav-links a:hover{color:var(--primary);}
+.nav-links a.active{color:var(--primary);}
+.nav-links a.njuice{color:var(--orange);border:1px solid rgba(249,115,22,.3);margin-left:.5rem;padding:.4rem .8rem;transition:all .3s;}
+.nav-links a.njuice:hover{background:var(--om);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--primary);transition:all .3s;}
+.mmenu{display:none;position:fixed;top:68px;left:0;right:0;z-index:9998;
+    background:rgba(5,10,15,.98);backdrop-filter:blur(24px);
+    border-bottom:1px solid rgba(125,211,252,.1);flex-direction:column;padding:1.5rem 2rem 2rem;}
+.mmenu.open{display:flex;}
+.mmenu a{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.15em;text-transform:uppercase;
+    color:rgba(125,211,252,.7);text-decoration:none;padding:.9rem 0;
+    border-bottom:1px solid rgba(125,211,252,.07);transition:color .3s;}
+.mmenu a:hover{color:var(--primary);}
+@media(max-width:960px){.nav-links{display:none;}.hamburger{display:flex;}nav{padding:0 1.5rem;}}
+
+/* PAGE HERO */
+.page-hero{padding:10rem 2rem 5rem;text-align:center;position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse at 50% 0%,rgba(125,211,252,.06) 0%,transparent 65%);}
+.page-eyebrow{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.5em;text-transform:uppercase;
+    color:rgba(125,211,252,.35);margin-bottom:1.2rem;}
+.page-title{font-family:'Cinzel',serif;font-size:clamp(2.4rem,7vw,5rem);font-weight:900;
+    letter-spacing:.06em;text-transform:uppercase;
+    background:linear-gradient(135deg,#bae6fd,var(--primary),var(--secondary),#bae6fd);
+    background-size:300% 300%;-webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;animation:shimmer 5s ease-in-out infinite;
+    filter:drop-shadow(0 0 40px rgba(125,211,252,.4));margin-bottom:.6rem;}
+.page-sub{font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:300;font-style:italic;
+    color:rgba(125,211,252,.65);letter-spacing:.15em;}
+
+/* MAIN CONTAINER */
+.container{max-width:900px;margin:0 auto;}
+.section{padding:3rem 2rem 6rem;}
+
+/* LOOKUP CARD */
+.lookup-card{background:rgba(125,211,252,.03);border:1px solid rgba(125,211,252,.14);
+    padding:3rem;position:relative;overflow:hidden;margin-bottom:3rem;}
+.lookup-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,var(--primary),transparent);}
+.lookup-label{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;
+    color:rgba(125,211,252,.38);display:block;margin-bottom:.8rem;}
+.lookup-input{width:100%;background:rgba(125,211,252,.04);border:1px solid rgba(125,211,252,.2);
+    color:#e0f2fe;padding:1rem 1.3rem;font-family:'Courier New',monospace;font-size:1rem;
+    outline:none;transition:all .3s;letter-spacing:.04em;margin-bottom:1.2rem;}
+.lookup-input:focus{border-color:var(--primary);box-shadow:0 0 25px rgba(125,211,252,.08);}
+.lookup-input::placeholder{color:rgba(125,211,252,.2);font-size:.88rem;}
+.lookup-row{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;}
+.btn{padding:1rem 2.2rem;font-family:'Cinzel',serif;font-size:.78rem;font-weight:600;
+    letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--primary);
+    background:rgba(125,211,252,.07);color:var(--primary);cursor:pointer;position:relative;
+    overflow:hidden;transition:all .35s;backdrop-filter:blur(10px);
+    text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;}
+.btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+    background:linear-gradient(90deg,transparent,rgba(125,211,252,.18),transparent);transition:left .5s;}
+.btn:hover::before{left:100%;}
+.btn:hover{background:var(--primary);color:var(--darker);box-shadow:0 0 35px var(--glow);transform:translateY(-2px);}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none!important;}
+.btn-ghost{background:transparent;border-color:rgba(125,211,252,.25);color:rgba(125,211,252,.55);}
+.btn-ghost:hover{background:var(--primary);color:var(--darker);border-color:var(--primary);}
+.or-divider{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.2em;
+    color:rgba(125,211,252,.22);text-transform:uppercase;}
+.demo-note{margin-top:1.2rem;font-size:.85rem;color:rgba(125,211,252,.28);line-height:1.7;}
+.demo-note strong{color:rgba(125,211,252,.5);}
+
+/* LOADING */
+.result-loading{text-align:center;padding:4rem 2rem;display:none;flex-direction:column;align-items:center;gap:1.2rem;}
+.spinner{width:52px;height:52px;border:2px solid rgba(125,211,252,.12);border-top-color:var(--primary);border-radius:50%;animation:spin .9s linear infinite;}
+.spin-lbl{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.25em;color:var(--primary);}
+.spin-sub{font-size:.82rem;color:rgba(125,211,252,.28);letter-spacing:.08em;}
+
+/* ERROR */
+.result-error{text-align:center;padding:3rem 2rem;display:none;
+    background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.18);}
+.result-error p{color:#f87171;font-size:1.05rem;line-height:1.7;}
+.result-error .err-icon{font-size:2.5rem;margin-bottom:1rem;}
+
+/* ARCHETYPE RESULT */
+.result-card{display:none;position:relative;overflow:hidden;animation:fadeInUp .8s ease-out both;}
+.result-card::before{content:'';position:absolute;inset:0;
+    border:1px solid var(--arch-color);opacity:.22;pointer-events:none;transition:all .5s;}
+.result-card-inner{padding:3.5rem 3rem;background:rgba(10,16,26,0.96);position:relative;z-index:1;}
+.result-glow{position:absolute;top:-80px;right:-80px;width:300px;height:300px;border-radius:50%;
+    background:radial-gradient(circle,var(--arch-color) 0%,transparent 70%);
+    opacity:.08;pointer-events:none;filter:blur(40px);}
+
+/* Arch Header */
+.arch-header{display:flex;align-items:flex-start;gap:2rem;margin-bottom:2.5rem;flex-wrap:wrap;}
+.arch-orb{width:100px;height:100px;border-radius:50%;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;font-size:3rem;
+    border:1px solid var(--arch-color);position:relative;
+    background:rgba(10,16,26,.8);box-shadow:0 0 40px rgba(125,211,252,.12);}
+.arch-orb::after{content:'';position:absolute;inset:-6px;border-radius:50%;
+    border:1px solid var(--arch-color);opacity:.25;animation:orbPulse 3s ease-in-out infinite;}
+.arch-meta{flex:1;min-width:200px;}
+.arch-rarity{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.35em;text-transform:uppercase;
+    color:var(--arch-color);opacity:.6;margin-bottom:.4rem;}
+.arch-name{font-family:'Cinzel',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--arch-color);
+    text-shadow:0 0 30px var(--arch-color);margin-bottom:.3rem;line-height:1.1;}
+.arch-subtitle{font-size:1.15rem;font-style:italic;color:rgba(224,242,254,.5);letter-spacing:.1em;}
+.arch-power-badge{display:inline-flex;align-items:center;gap:.5rem;margin-top:.8rem;
+    padding:.35rem 1rem;border:1px solid var(--arch-color);background:rgba(125,211,252,.04);
+    font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--arch-color);}
+
+/* Stats bar */
+.arch-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;
+    margin-bottom:2.5rem;}
+.astat{background:rgba(125,211,252,.03);border:1px solid rgba(125,211,252,.1);
+    padding:1.2rem;text-align:center;}
+.astat-val{font-family:'Cinzel',serif;font-size:1.6rem;font-weight:700;color:var(--arch-color);
+    margin-bottom:.2rem;word-break:break-all;}
+.astat-lbl{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(125,211,252,.32);}
+
+/* Narrative */
+.arch-divider{height:1px;background:linear-gradient(90deg,transparent,var(--arch-color),transparent);
+    opacity:.2;margin:2rem 0;}
+.arch-narrative-lbl{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.35em;
+    text-transform:uppercase;color:var(--arch-color);opacity:.5;margin-bottom:1rem;}
+.arch-narrative{font-size:1.2rem;line-height:2;color:rgba(224,242,254,.78);
+    font-style:italic;padding-left:1.2rem;border-left:2px solid var(--arch-color);
+    border-left-color:var(--arch-color);}
+.arch-narrative::before{content:'" ';color:var(--arch-color);font-size:2rem;line-height:0;
+    vertical-align:-.4em;margin-right:.1rem;opacity:.5;}
+.arch-narrative::after{content:' "';color:var(--arch-color);font-size:2rem;line-height:0;
+    vertical-align:-.4em;margin-left:.1rem;opacity:.5;}
+
+/* CTA */
+.arch-cta{margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+
+/* Share text */
+.share-text{margin-top:2rem;padding:1.5rem;background:rgba(125,211,252,.03);
+    border:1px solid rgba(125,211,252,.1);text-align:center;}
+.share-text p{font-size:.88rem;color:rgba(125,211,252,.35);margin-bottom:.8rem;
+    font-family:'Cinzel',serif;letter-spacing:.15em;text-transform:uppercase;}
+.share-copy{font-family:'Courier New',monospace;font-size:.9rem;color:rgba(224,242,254,.6);
+    line-height:1.7;cursor:pointer;transition:color .3s;padding:.5rem;}
+.share-copy:hover{color:var(--primary);}
+
+/* ARCHETYPES LEGEND */
+.legend-title{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.38em;text-transform:uppercase;
+    color:rgba(125,211,252,.3);text-align:center;margin-bottom:2rem;}
+.legend-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem;}
+.legend-card{background:rgba(125,211,252,.02);border:1px solid rgba(125,211,252,.09);
+    padding:1.5rem;transition:all .3s;cursor:default;}
+.legend-card:hover{border-color:rgba(125,211,252,.22);transform:translateY(-4px);}
+.legend-icon{font-size:1.8rem;margin-bottom:.6rem;}
+.legend-name{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--primary);margin-bottom:.3rem;}
+.legend-req{font-size:.78rem;color:rgba(125,211,252,.32);line-height:1.5;}
+.legend-rarity{font-size:.68rem;color:rgba(125,211,252,.22);letter-spacing:.1em;margin-top:.4rem;
+    font-family:'Cinzel',serif;}
+
+/* AMBIENT */
+.particle{position:fixed;width:2px;height:2px;background:var(--primary);border-radius:50%;
+    pointer-events:none;opacity:0;z-index:0;animation:particleFloat linear infinite;}
+.gorb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px);
+    opacity:.14;width:400px;height:400px;
+    background:radial-gradient(circle,var(--glow) 0%,transparent 70%);}
+
+/* TOAST */
+.toast{position:fixed;bottom:2rem;right:2rem;background:rgba(5,10,15,.96);
+    border:1px solid var(--primary);color:var(--primary);padding:1rem 2rem;
+    font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.15em;z-index:99999;
+    transform:translateY(120px);transition:transform .4s cubic-bezier(.34,1.56,.64,1);
+    backdrop-filter:blur(20px);}
+.toast.show{transform:translateY(0);}
+.toast.tok{border-color:var(--green);color:var(--green);}
+.toast.terr{border-color:#ef4444;color:#ef4444;}
+
+/* FOOTER */
+footer{background:var(--darker);padding:3rem 2rem 2.5rem;border-top:1px solid rgba(125,211,252,.08);text-align:center;}
+.ft-logo{font-family:'Cinzel',serif;font-size:1.3rem;font-weight:900;letter-spacing:.1em;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.8rem;}
+.ft-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem;}
+.ft-links a{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;
+    color:rgba(125,211,252,.28);text-decoration:none;transition:color .3s;}
+.ft-links a:hover{color:var(--primary);}
+.ft-disc{font-size:.78rem;color:rgba(125,211,252,.18);max-width:500px;margin:0 auto;line-height:1.7;}
+
+/* KEYFRAMES */
+@keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes orbPulse{0%,100%{transform:scale(1);opacity:.25}50%{transform:scale(1.12);opacity:.1}}
+@keyframes particleFloat{0%{transform:translateY(100vh);opacity:0}10%,90%{opacity:.5}50%{transform:translateY(-10vh) translateX(20px);opacity:.8}100%{transform:translateY(-100vh);opacity:0}}
+@keyframes scanline{0%{left:-100%}100%{left:200%}}
+@keyframes glowPulse{0%,100%{opacity:.06}50%{opacity:.14}}
+
+.no-tokens-note{background:rgba(249,115,22,.05);border:1px solid rgba(249,115,22,.18);
+    padding:1rem 1.4rem;margin-bottom:2rem;font-size:.95rem;color:rgba(249,115,22,.7);
+    line-height:1.7;text-align:center;}
+.no-tokens-note a{color:var(--orange);text-decoration:none;}
+.no-tokens-note a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<!-- AMBIENT -->
+<div class="gorb" id="g1"></div>
+<div class="gorb" id="g2" style="background:radial-gradient(circle,rgba(167,139,250,.3) 0%,transparent 70%);opacity:.08;"></div>
+<div id="particles"></div>
+<div class="toast" id="toast"></div>
+
+<!-- NAV -->
+<nav id="nav">
+    <a href="/" class="nav-logo">$REMEMBER</a>
+    <ul class="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#juice">Juice Burn</a></li>
+        <li><a href="/#tokenomics">Tokenomics</a></li>
+        <li><a href="/#memes">AI Memes</a></li>
+        <li><a href="/archetype.html" class="active">🔮 Archetype</a></li>
+        <li><a href="/#community">Community</a></li>
+        <li><a href="https://www.juiceeverything.com/" target="_blank" class="njuice">🍊 Juice</a></li>
+    </ul>
+    <button class="hamburger" id="hbg" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mmenu" id="mm">
+    <a href="/">← Home</a>
+    <a href="/#about">About</a>
+    <a href="/#juice">Juice Burn</a>
+    <a href="/#tokenomics">Tokenomics</a>
+    <a href="/#memes">AI Memes</a>
+    <a href="/archetype.html">🔮 Your Archetype</a>
+    <a href="/#community">Community</a>
+</div>
+
+<!-- HERO -->
+<div class="page-hero">
+    <p class="page-eyebrow">On-Chain Identity · $REMEMBER Solana</p>
+    <h1 class="page-title">Your Crypto Archetype</h1>
+    <p class="page-sub">The blockchain remembers everything. What does it say about you?</p>
+</div>
+
+<!-- MAIN -->
+<section class="section">
+    <div class="container">
+
+        <!-- LOOKUP -->
+        <div class="lookup-card">
+            <label class="lookup-label" for="walletInput">Enter Your Solana Wallet Address</label>
+            <input class="lookup-input" id="walletInput" type="text"
+                placeholder="e.g. 7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU"
+                autocomplete="off" autocorrect="off" spellcheck="false">
+            <div class="lookup-row">
+                <button class="btn" id="revealBtn" onclick="revealArchetype()">🔮 Reveal My Archetype</button>
+                <span class="or-divider">— or —</span>
+                <button class="btn btn-ghost" onclick="pasteWallet()">📋 Paste from Clipboard</button>
+            </div>
+            <p class="demo-note">
+                <strong>🔒 Read-only.</strong> We only read your public token balance via the Solana RPC.
+                No wallet connection required. No signing. No permissions.
+            </p>
+        </div>
+
+        <!-- LOADING -->
+        <div class="result-loading" id="resLoading">
+            <div class="spinner"></div>
+            <p class="spin-lbl">Consulting the blockchain…</p>
+            <p class="spin-sub">Reading the ancient ledger</p>
+        </div>
+
+        <!-- ERROR -->
+        <div class="result-error" id="resError">
+            <div class="err-icon">⚠️</div>
+            <p id="errMsg">Something went wrong. Please check the wallet address and try again.</p>
+        </div>
+
+        <!-- RESULT -->
+        <div class="result-card" id="resCard">
+            <div class="result-glow" id="resGlow"></div>
+            <div class="result-card-inner">
+
+                <!-- No tokens notice -->
+                <div class="no-tokens-note" id="noTokensNote" style="display:none">
+                    ⚠️ This wallet holds <strong>no $REMEMBER tokens</strong> yet. Your archetype reflects your current potential.
+                    <a href="https://jup.ag/swap/SOL-CYfwS1vQfMtJgU8woviDXKhqPPkzoNzRxrPGQiRHpump" target="_blank">Get $REMEMBER on Jupiter →</a>
+                </div>
+
+                <!-- Header -->
+                <div class="arch-header">
+                    <div class="arch-orb" id="archOrb">🌌</div>
+                    <div class="arch-meta">
+                        <div class="arch-rarity" id="archRarity">Mythic · Top 0.1%</div>
+                        <div class="arch-name" id="archName">The Eternal Witness</div>
+                        <div class="arch-subtitle" id="archSubtitle">Bearer of Ancient Memory</div>
+                        <div class="arch-power-badge">⚡ <span id="archPower">Temporal Mastery</span></div>
+                    </div>
+                </div>
+
+                <!-- Stats -->
+                <div class="arch-stats">
+                    <div class="astat">
+                        <div class="astat-val" id="statAmount">0</div>
+                        <div class="astat-lbl">$REMEMBER Held</div>
+                    </div>
+                    <div class="astat">
+                        <div class="astat-val" id="statDays">0</div>
+                        <div class="astat-lbl">Days Holding</div>
+                    </div>
+                    <div class="astat">
+                        <div class="astat-val" id="statWallet">—</div>
+                        <div class="astat-lbl">Wallet</div>
+                    </div>
+                </div>
+
+                <!-- Narrative -->
+                <div class="arch-divider"></div>
+                <p class="arch-narrative-lbl">Your Mystical Reading</p>
+                <p class="arch-narrative" id="archNarrative">Loading…</p>
+
+                <!-- CTAs -->
+                <div class="arch-cta">
+                    <a href="https://x.com/i/communities/2025009364206322044" target="_blank" class="btn">𝕏 Share on X</a>
+                    <a href="https://jup.ag/swap/SOL-CYfwS1vQfMtJgU8woviDXKhqPPkzoNzRxrPGQiRHpump" target="_blank" class="btn btn-ghost">💱 Get More $REMEMBER</a>
+                    <button class="btn btn-ghost" onclick="copyShareText()">📋 Copy Share Text</button>
+                </div>
+
+                <!-- Share text block -->
+                <div class="share-text" id="shareBlock">
+                    <p>Share your archetype</p>
+                    <div class="share-copy" id="shareCopyTxt" onclick="copyShareText()"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- LEGEND -->
+        <div style="margin-top:5rem;">
+            <p class="legend-title">All Archetypes · The Full Pantheon</p>
+            <div class="legend-grid">
+                <div class="legend-card">
+                    <div class="legend-icon">🌌</div>
+                    <div class="legend-name">The Eternal Witness</div>
+                    <div class="legend-req">50M+ tokens · 90+ days</div>
+                    <div class="legend-rarity">Mythic · Top 0.1%</div>
+                </div>
+                <div class="legend-card">
+                    <div class="legend-icon">💎</div>
+                    <div class="legend-name">Diamond Monk</div>
+                    <div class="legend-req">10M+ tokens · 60+ days</div>
+                    <div class="legend-rarity">Legendary · Top 1%</div>
+                </div>
+                <div class="legend-card">
+                    <div class="legend-icon">🔮</div>
+                    <div class="legend-name">Signal Guardian</div>
+                    <div class="legend-req">1M+ tokens · 30+ days</div>
+                    <div class="legend-rarity">Epic · Top 5%</div>
+                </div>
+                <div class="legend-card">
+                    <div class="legend-icon">🦖</div>
+                    <div class="legend-name">The Ancient</div>
+                    <div class="legend-req">500K+ tokens · 14+ days</div>
+                    <div class="legend-rarity">Rare · Top 10%</div>
+                </div>
+                <div class="legend-card">
+                    <div class="legend-icon">⚡</div>
+                    <div class="legend-name">Chaos Trader</div>
+                    <div class="legend-req">100K+ tokens</div>
+                    <div class="legend-rarity">Uncommon · Top 20%</div>
+                </div>
+                <div class="legend-card">
+                    <div class="legend-icon">🌅</div>
+                    <div class="legend-name">The Awakening</div>
+                    <div class="legend-req">Any amount · Just arrived</div>
+                    <div class="legend-rarity">Common · The Beginning</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="ft-logo">$REMEMBER WHO YOU ARE</div>
+    <div class="ft-links">
+        <a href="/">Home</a>
+        <a href="/#about">About</a>
+        <a href="/#juice">Juice Burn</a>
+        <a href="/#memes">AI Memes</a>
+        <a href="https://x.com/i/communities/2025009364206322044" target="_blank">X Community</a>
+        <a href="https://t.me/+AUq-XdWHT7RhMGEy" target="_blank">Telegram</a>
+    </div>
+    <p class="ft-disc">$REMEMBER is a memecoin. Not financial advice. DYOR. Only invest what you can afford to lose.</p>
+</footer>
+
+<script>
+'use strict';
+
+/* PARTICLES */
+(()=>{const c=document.getElementById('particles');for(let i=0;i<28;i++){const p=document.createElement('div');p.className='particle';p.style.cssText=`left:${Math.random()*100}%;animation-duration:${14+Math.random()*12}s;animation-delay:${Math.random()*16}s;width:${1+Math.random()*1.5}px;height:${1+Math.random()*1.5}px;`;c.appendChild(p);}})();
+
+/* MOUSE GLOW */
+let mx=0,my=0,g1x=0,g1y=0,g2x=0,g2y=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function gl(){g1x+=(mx-g1x)*.04;g1y+=(my-g1y)*.04;g2x+=(mx-g2x)*.025;g2y+=(my-g2y)*.025;
+    const a=document.getElementById('g1'),b=document.getElementById('g2');
+    if(a){a.style.left=(g1x-200)+'px';a.style.top=(g1y-200)+'px';}
+    if(b){b.style.left=(g2x-200)+'px';b.style.top=(g2y-200)+'px';}
+    requestAnimationFrame(gl);})();
+
+/* NAV HAMBURGER */
+document.getElementById('hbg').addEventListener('click',()=>document.getElementById('mm').classList.toggle('open'));
+
+/* TOAST */
+let tt;
+function toast(msg,t=''){const el=document.getElementById('toast');el.textContent=msg;el.className='toast show'+(t?' t'+t:'');clearTimeout(tt);tt=setTimeout(()=>el.className='toast',3200);}
+
+/* PASTE */
+async function pasteWallet(){
+    try{const t=await navigator.clipboard.readText();document.getElementById('walletInput').value=t.trim();toast('Pasted!','ok');}
+    catch{toast('Clipboard permission denied','err');}
+}
+
+/* UI STATE */
+function setState(s){
+    document.getElementById('resLoading').style.display=s==='loading'?'flex':'none';
+    document.getElementById('resError').style.display=s==='error'?'block':'none';
+    document.getElementById('resCard').style.display=s==='result'?'block':'none';
+    document.getElementById('revealBtn').disabled=s==='loading';
+}
+
+/* APPLY RESULT */
+function applyResult(data){
+    const a=data.archetype;
+    const color=a.color||'#7dd3fc';
+
+    // Set CSS variable for theme colour
+    document.documentElement.style.setProperty('--arch-color',color);
+
+    // Update glow
+    const glow=document.getElementById('resGlow');
+    glow.style.background=`radial-gradient(circle,${color} 0%,transparent 70%)`;
+
+    // Header
+    document.getElementById('archOrb').textContent=a.emoji;
+    document.getElementById('archOrb').style.borderColor=color;
+    document.getElementById('archOrb').style.boxShadow=`0 0 40px ${color}22`;
+    document.getElementById('archRarity').textContent=a.rarity;
+    document.getElementById('archName').textContent=a.name;
+    document.getElementById('archName').style.color=color;
+    document.getElementById('archName').style.textShadow=`0 0 30px ${color}88`;
+    document.getElementById('archSubtitle').textContent=a.subtitle;
+    document.getElementById('archPower').textContent=a.power;
+
+    // Stats
+    document.getElementById('statAmount').textContent=data.amount_display;
+    document.getElementById('statDays').textContent=data.days_held||'< 1';
+    document.getElementById('statWallet').textContent=data.wallet;
+
+    // Style stat values with arch color
+    document.querySelectorAll('.astat-val').forEach(el=>el.style.color=color);
+
+    // Power badge
+    document.querySelector('.arch-power-badge').style.borderColor=color;
+    document.querySelector('.arch-power-badge').style.color=color;
+
+    // Narrative border
+    document.querySelector('.arch-narrative').style.borderLeftColor=color;
+
+    // Narrative
+    document.getElementById('archNarrative').textContent=a.narrative;
+
+    // No tokens notice
+    document.getElementById('noTokensNote').style.display=data.has_tokens?'none':'block';
+
+    // Share text
+    const share=`I just revealed my $REMEMBER crypto archetype: ${a.emoji} ${a.name} — "${a.subtitle}"\n\nHolding ${data.amount_display} $REMEMBER for ${data.days_held} days.\n\nDiscover yours → https://remembertoken.xyz/archetype.html\n$REMEMBER CA: CYfwS1vQfMtJgU8woviDXKhqPPkzoNzRxrPGQiRHpump`;
+    document.getElementById('shareCopyTxt').textContent=share;
+    document.getElementById('shareCopyTxt').dataset.share=share;
+
+    setState('result');
+    setTimeout(()=>document.getElementById('resCard').scrollIntoView({behavior:'smooth',block:'start'}),100);
+}
+
+/* MAIN REVEAL */
+async function revealArchetype(){
+    const wallet=document.getElementById('walletInput').value.trim();
+    if(!wallet){toast('Please enter a wallet address','err');return;}
+    if(wallet.length<32||wallet.length>44){toast('Invalid Solana address length','err');return;}
+
+    setState('loading');
+
+    try{
+        const res=await fetch('/api/archetype',{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({wallet})
+        });
+        const data=await res.json();
+        if(!res.ok) throw new Error(data.error||'Server error');
+        applyResult(data);
+    }catch(err){
+        setState('error');
+        document.getElementById('errMsg').textContent='⚠ '+err.message;
+        toast('Failed to read wallet','err');
+    }
+}
+
+/* SHARE COPY */
+function copyShareText(){
+    const txt=document.getElementById('shareCopyTxt').dataset.share||document.getElementById('shareCopyTxt').textContent;
+    navigator.clipboard.writeText(txt).then(()=>toast('Share text copied!','ok')).catch(()=>toast('Copy failed','err'));
+}
+
+/* ENTER KEY */
+document.getElementById('walletInput').addEventListener('keydown',e=>{if(e.key==='Enter')revealArchetype();});
+</script>
+</body>
+</html>
